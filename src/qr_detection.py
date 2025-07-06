@@ -52,4 +52,4 @@ def draw_qr_codes(image, qr_codes):
         # Draw the text (also requires integer coordinates for the starting point)
         cv2.putText(image, f'{confidence:.2f}', (x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=1, color=(0, 255, 0), thickness=2)
-    return image
+    return image, confidence
