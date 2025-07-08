@@ -5,14 +5,14 @@ import qr_decode
 
 def main():
     """Run the main QR code detection and decode loop."""
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0) # pylint: disable=no-member
     if not cap.isOpened():
         print("Error: Could not open webcam.")
         return
     confidence = 0.0  # Initialize confidence variable
     while True:
         # Activate the webcam and capture a frame
-        ret, frame = cap.read()
+        ret, frame = cap.read() # pylint: disable=no-member
         if not ret:
             print("Error: Could not read frame.")
             break
@@ -34,13 +34,13 @@ def main():
                 print("Failed to decode QR code.")
 
         # Display the frame (either original or with drawn QR codes)
-        cv2.imshow("QR Code Detection", frame) # THIS IS THE CORRECT PLACEMENT
+        cv2.imshow("QR Code Detection", frame) # pylint: disable=no-member
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'): # pylint: disable=no-member
             print("Exiting...")
             break
-    cap.release()
-    cv2.destroyAllWindows()
+    cap.release() # pylint: disable=no-member
+    cv2.destroyAllWindows() # pylint: disable=no-member
 
 if __name__ == "__main__":
     main()
