@@ -1,8 +1,10 @@
-import cv2
+"""import modules qr_detection and qr_decode are main"""
+import cv2 # pylint: disable=no-member
 import qr_detection
 import qr_decode
 
 def main():
+    """Run the main QR code detection and decode loop."""
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         print("Error: Could not open webcam.")
