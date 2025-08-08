@@ -18,21 +18,18 @@ def main():
         # Perform QR code detection
         qr_codes = qr_detection.qr_detection(frame)
         
-        if qr_codes is None or len(qr_codes) == 0:
-            print("No QR codes detected.")
-            # No need for 'continue' here, just let it display the original frame
-        else:
+        if qr_codes or len(qr_codes) > 0: # when detect QR codes
             print(f"Detected {len(qr_codes)} QR codes.")
             # Draw detected QR codes on the frame
             frame, confidence = qr_detection.draw_qr_codes(frame, qr_codes)
+        else:
+            print("No QR codes detected.")
+            # No need for 'continue' here, just let it display the original frame
         
         if confidence > 0.8: 
             # Decode the QR code if confidence is high enough
             decoded_result = qr_decode.decode_qr_code(frame)
-            if decoded_result:
-                print(f"Decoded QR code: {decoded_result}")
-            else:
-                print("Failed to decode QR code.")
+            qr_decode.show_result(decoded_result)
 
         # Display the frame (either original or with drawn QR codes)
         cv2.imshow("QR Code Detection", frame) # THIS IS THE CORRECT PLACEMENT
