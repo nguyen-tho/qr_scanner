@@ -1,5 +1,6 @@
+"""This module can detect the QR code and masked the QR by a bounding box"""
 from qrdet import QRDetector
-import cv2
+import cv2 # pylint: disable=no-member
 
 def qr_detection(image):
     """
@@ -32,6 +33,7 @@ def draw_qr_codes(image, qr_codes):
 
     Returns:
         numpy.ndarray: Image with drawn QR codes.
+        float: confidence
     """
     detections = qr_codes
     for detection in detections:
@@ -47,9 +49,10 @@ def draw_qr_codes(image, qr_codes):
         confidence = detection['confidence']
 
         # Draw the rectangle
-        cv2.rectangle(image, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2)
+        cv2.rectangle(image, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2) # pylint: disable=no-member
 
         # Draw the text (also requires integer coordinates for the starting point)
+        # pylint: disable=no-member
         cv2.putText(image, f'{confidence:.2f}', (x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=1, color=(0, 255, 0), thickness=2)
     return image, confidence
